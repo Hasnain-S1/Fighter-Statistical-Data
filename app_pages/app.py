@@ -30,8 +30,10 @@ with open(css_path) as f:
 # Load and process data
 @st.cache_data
 def load_data():
-    file_path = os.path.join(os.path.dirname(__file__), '..', 'attached_assets', 'ufc-fighters-statistics-cleaned.csv')
+    file_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'ufc-fighters-statistics-cleaned.csv')
     return load_and_process_data(file_path)
+
+
 
 df = load_data()
 
@@ -42,9 +44,7 @@ st.markdown("Compare fighters and analyze their statistics across different weig
 # Sidebar
 st.sidebar.title("Fighter Selection")
 
-# Gender selection
-gender = st.sidebar.radio("Select Gender", ['Male', 'Female'])
-filtered_df = df[df['gender'] == gender]
+
 
 # Weight class selection
 weight_classes_male = [
@@ -55,12 +55,12 @@ weight_classes_female = [
     'Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight'
 ]
 
-weight_class_options = weight_classes_male if gender == "Male" else weight_classes_female
+weight_class_options = weight_classes_male + weight_classes_female  # Show all weight classes
 
 weight_class = st.sidebar.selectbox("Select Weight Class", weight_class_options)
 
 # Filter dataset based on weight class
-filtered_df = filtered_df[filtered_df['weight_class'] == weight_class]
+filtered_df = df[df['weight_class'] == weight_class]
 
 # Get fighters in selected weight class
 fighters = get_fighters_by_weight_class(filtered_df, weight_class)
