@@ -1,4 +1,6 @@
 import pandas as pd
+from utils.fight_scraper import get_recent_fights  # Import the fight scraper function
+
 
 def load_and_process_data(file_path):
     df = pd.read_csv(file_path)
@@ -47,3 +49,16 @@ def get_comparison_metrics(fighter_data):
         'Strike Defense': fighter_data.get('significant_strike_defence', 0),
         'Takedown Defense': fighter_data.get('takedown_defense', 0)
     }
+
+def get_fighter_stats_with_recent(df, fighter_name):
+    # Get fighter stats from the dataset
+    fighter_stats = get_fighter_stats(df, fighter_name)
+
+    # Fetch recent fights and achievements from fight_scraper
+    recent_fights, achievements = get_recent_fights(fighter_name)
+
+    # Add new data to the existing stats
+    fighter_stats["recent_fights"] = recent_fights
+    fighter_stats["achievements"] = achievements
+
+    return fighter_stats
