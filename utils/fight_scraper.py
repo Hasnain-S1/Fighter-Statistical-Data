@@ -28,21 +28,18 @@ def get_recent_fights(fighter_name):
     """Scrapes recent fight history from Sherdog."""
     fighter_url = get_fighter_sherdog_url(fighter_name)
     if not fighter_url:
-        return f"No fighter found for {fighter_name}"
+        return []  # Return an empty list instead of a string
 
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(fighter_url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # Debugging: Print first 500 characters of the page content to check structure
-    print(f"Page Content (First 500 chars): {response.text[:500]}")
-
-    # Look for the fight history section (adjusted for broader selector)
-    fight_rows = soup.select("table.fight_history tr")  # Broader selector for fight history
+    # Look for fight history section
+    fight_rows = soup.select("table.fight_history tr")
 
     if not fight_rows:
         print(f"No fight history found for {fighter_name}")
-        return "No recent fight data available."
+        return []  # Return an empty list instead of a string
     
     fight_data = []
     for row in fight_rows[1:6]:  # Get the last 5 fights (skip header)
@@ -60,10 +57,7 @@ def get_recent_fights(fighter_name):
         }
         fight_data.append(fight)
     
-    if not fight_data:
-        print(f"No recent fight data found for {fighter_name}")
-    
-    return pd.DataFrame(fight_data) if fight_data else "No recent fight data available."
+    return fight_data if fight_data else []  # Always return a list
 
 def get_fighter_stats_with_recent(df, fighter_name):
     """Retrieves fighter stats from the DataFrame and adds recent fight data."""
@@ -75,16 +69,12 @@ def get_fighter_stats_with_recent(df, fighter_name):
     fighter_data = fighter.iloc[0].to_dict()  # Convert row to dictionary
     
     # Fetch recent fights
-    recent_fights_df = get_recent_fights(fighter_name)
+    recent_fights = get_recent_fights(fighter_name)
     
-    # Store recent fights as a list of dictionaries
-    if isinstance(recent_fights_df, pd.DataFrame) and not recent_fights_df.empty:
-        fighter_data["recent_fights"] = recent_fights_df.to_dict(orient="records")
-    else:
-        fighter_data["recent_fights"] = "No recent fight data available."
+    # Ensure recent_fights is always a list
+    fighter_data["recent_fights"] = recent_fights if isinstance(recent_fights, list) else []
     
-    # Career highlights (add more data if available)
+    # Career highlights
     fighter_data["achievements"] = fighter_data.get('achievements', 'No achievements recorded')
     
     return fighter_data
-

@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from utils.data_processor import get_fighters_by_weight_class, get_fighter_stats
 from utils.visualization import create_stats_bar_chart, create_spider_chart
-from utils.fight_scraper import get_fighter_stats_with_recent, get_recent_fights
+from utils.fight_scraper import get_fighter_stats_with_recent
 
 def fighter_profile_page(df):
     st.title("🏅 Fighter Profile")
@@ -20,7 +20,6 @@ def fighter_profile_page(df):
 
     # Get fighter stats
     fighter_data = get_fighter_stats_with_recent(filtered_df, fighter_name)
-
 
     # Display fighter details
     st.markdown(f"## {fighter_name}")
@@ -42,14 +41,14 @@ def fighter_profile_page(df):
 
     # Recent Fights Section
     st.markdown("### Recent Fights")
-    recent_fights_df = get_recent_fights(fighter_name)  # Fetch recent fights
+    recent_fights = fighter_data.get("recent_fights", [])
 
-    if isinstance(recent_fights_df, pd.DataFrame) and not recent_fights_df.empty:
+    if isinstance(recent_fights, list) and recent_fights:
+        recent_fights_df = pd.DataFrame(recent_fights)
         st.dataframe(recent_fights_df)  # Display fights as a table
     else:
-        st.write("No recent fight data available.")
+        st.warning("No recent fight data available.")  # Display warning instead of an empty table
 
     # Career Highlights / Achievements
     st.markdown("### Career Highlights")
     st.markdown(f"- Achievements: {fighter_data.get('achievements', 'No achievements recorded')}")
-
