@@ -105,6 +105,10 @@ Our analysis was conducted in Jupyter Notebooks, focusing on:
 ![alt text](image-3.png)
 ![alt text](image-4.png)
 
+https://app.powerbi.com/links/MsQVbW9XWA?ctid=c233c072-135b-431d-af59-35e05babf941&pbi_source=linkShare&bookmarkGuid=32bdf803-529d-40ff-930e-880e220787f2
+
+Use of AI : ChatGPT was used for brainstorming ideas and fixing code
+
 
 # Key Findings & Conclusions
 
