@@ -20,15 +20,38 @@ Through statistical analysis and data visualization, this project provides insig
 
 We tested the following five hypotheses using statistical methods:
 
-* Reach-to-Height Ratio – Fighters with a higher reach-to-height ratio tend to have a higher win percentage.
+* Reach-to-Height Ratio – Fighters with a higher reach-to-height ratio tend to have a higher win percentage- Validation: Correlation analysis between reach-to-height ratio and win percentage.
 
-* Strike Accuracy – Fighters with better strike accuracy have higher win percentages.
+* Strike Accuracy – Fighters with better strike accuracy have higher win percentages- Validation: Regression analysis between strike accuracy and wins.
 
-* Weight Class Impact – Heavyweights may have lower win percentages than lighter fighters due to endurance factors.
+* Weight Class Impact – Heavyweights may have lower win percentages than lighter fighters due to endurance factors- Validation: T-tests comparing win percentages across weight classes.
 
-* Takedown Defense – Fighters with better takedown defense tend to win more fights.
+* Takedown Defense – Fighters with better takedown defense tend to win more fights- Validation: Win percentages of fighters with high vs. low takedown defense.
 
-* Strikes Absorbed – Fighters who absorb fewer strikes per minute have a higher win rate.
+* Strikes Absorbed – Fighters who absorb fewer strikes per minute have a higher win rate- Negative correlation analysis between strikes absorbed per minute and win percentage.
+
+
+# Business Requirements
+
+The goal is to uncover data-driven insights that can be applied to fighter training, strategy development, and talent scouting. Specifically, we aim to:
+
+* Identify performance indicators that correlate with higher win percentages.
+
+* Compare striking efficiency vs. grappling efficiency.
+
+* Determine if physical attributes (such as reach-to-height ratio) influence success.
+
+* Develop an interactive tool to visualize fighter comparisons dynamically.
+
+# Analysis Techniques Used
+* Exploratory Data Analysis (EDA): Histograms, scatter plots, box plots, and heatmaps were used to understand distributions and correlations.
+
+* Statistical Testing: T-tests and regression models were applied to test hypotheses and confirm statistical significance.
+
+* Comparative Analysis: Fighters were categorized into groups (e.g., high vs. low strike accuracy) to compare performance differences.
+
+* Interactive Visualization: Power BI and Streamlit dashboards allow for dynamic exploration of fighter statistics.
+
 
 # Dataset & Data Preparation
 
@@ -42,6 +65,14 @@ We used a dataset of MMA fighters that includes key statistics such as:
 
 * Win/Loss Records: Total fights, wins, losses, and win percentages.
 Dataset obtained from kaggle. https://www.kaggle.com/datasets/asaniczka/ufc-fighters-statistics
+
+# Data Management Approach
+
+* Collection & Cleaning: The dataset was preprocessed by handling missing values, standardizing numerical data, and calculating new features (e.g., reach-to-height ratio).
+
+* Processing & Analysis: Statistical methods and data visualizations were applied to test hypotheses and identify trends.
+
+* Interpretation & Insights: Findings were compiled into reports, dashboards, and an interactive Streamlit application.
 
 # Data Cleaning & Preparation
 
@@ -65,7 +96,11 @@ Our analysis was conducted in Jupyter Notebooks, focusing on:
 
 * Striking vs. Grappling Efficiency – Bar charts and heatmaps to compare successful vs. unsuccessful attempts.
 
-* Statistical Testing – Using T-tests to validate hypotheses.#
+* Statistical Testing – Using T-tests to validate hypotheses.
+
+# Dashboard Visualisation
+
+
 
 # Key Findings & Conclusions
 
@@ -79,14 +114,50 @@ Our analysis was conducted in Jupyter Notebooks, focusing on:
 
 * Strikes absorbed per minute was a crucial factor—fighters who took less damage had significantly higher win rates.
 
-# Next Steps
+# Limitations & Alternative Approaches
+
+* Data Gaps: Some fighter records were incomplete, requiring imputation or exclusion.
+
+* Weight Class Differences: Heavyweights fight differently than lighter fighters, making direct comparisons challenging.
+
+* Future Alternative: Incorporate real-time fight data or machine learning models for better predictions.
+
+# Ethical Considerations
+
+* Data Bias: The dataset may overrepresent certain weight classes or fighting styles. To mitigate this, we ensured balanced comparisons across divisions.
+
+* Fairness: Statistical tests were used to confirm objective analysis, minimizing subjective bias.
+
+* Privacy & Compliance: All data was sourced from publicly available fight statistics, ensuring ethical data usage.
+
+# Unfixed Bugs & Challenges Faced
+
+* Missing Data for Some Fighters: Some fighters had incomplete records, affecting certain analyses.
+
+* Feature Engineering Limitations: Some metrics (like fight pace) are difficult to quantify with available data.
+
+* Dashboard Performance: High interactivity in Power BI and Streamlit required optimizations for faster load times.
+
+# Knowledge Gaps & How They Were Addressed
+
+* Advanced Statistical Analysis: Researched additional regression models to refine findings.
+
+* Data Visualization Best Practices: Studied effective dashboard designs to enhance clarity.
+
+* Technical Feedback: Incorporated feedback from data science peers to improve model interpretations.
+
+# Developmental Roadmap and Future Improvements
+
+* Challenges & Strategies Used
+
+* Complex Data Relationships: Addressed using correlation matrices and statistical testing.
+* Interactivity vs. Performance: Streamlined Power BI and Streamlit dashboards for better efficiency.
+
+* Future Enhancements
 
 * Expand the dataset to include more fighters and historical fight data for deeper analysis.
-
 * Incorporate machine learning models to predict fight outcomes based on fighter statistics.
-
 * Opponent-Based Insights: Analyze head-to-head matchups to determine which styles work best against different fighter archetypes.
-
 * Automate Data Updates: Create a pipeline to pull updated fight statistics automatically for continuous analysis.
 
 # Tools & Technologies Used
@@ -99,24 +170,6 @@ Our analysis was conducted in Jupyter Notebooks, focusing on:
 
 * Streamlit for building interactive web applications.
 
-## Cloud IDE Reminders
+# Acknowledgments
 
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
-* Set the runtime.txt Python version to a [Heroku-22](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
-
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+I would like to thank and praise everyone at Code Institute especially the Data Analytics group who I have closely worked with over the past few months
