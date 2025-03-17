@@ -1,56 +1,103 @@
 # ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-## Template Instructions
+## MMA Fighter Statistical Analysis
 
-Welcome,
+# Overview
+This project explores the relationship between fighter attributes and success metrics in MMA (Mixed Martial Arts). By analyzing key performance indicators such as striking accuracy, takedown defense, and physical attributes, we aim to uncover what differentiates elite fighters from the rest.
 
-This is the Code Institute student template for the Data Analytics capstone project. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+Through statistical analysis and data visualization, this project provides insights into which factors contribute to a fighter's success.
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
+# Objectives
+* Identify performance indicators that correlate with higher win percentages.
 
-## How to use this repo
+* Analyze striking vs. grappling efficiency and their impact on fight outcomes.
 
-1. Use this template to create your GitHub project repo. Click the Use this template button, then click Create a new repository.
+* Determine if physical attributes like reach-to-height ratio influence success.
 
-1. Copy the URL of your repository to your clipboard.
+* Visualize trends and comparisons between fighters to uncover key patterns.
 
-1. In VS Code, select File - Open Folder.
+# Hypotheses
 
-1. Select your vscode-projects folder, then click the Select Folder button on Windows, or Open button on Mac.
+We tested the following five hypotheses using statistical methods:
 
-1. From the top menu in VS Code, select Terminal > New Terminal to open the terminal.
+* Reach-to-Height Ratio – Fighters with a higher reach-to-height ratio tend to have a higher win percentage.
 
-1. In the terminal, type git clone followed by the URL of your GitHub repository. Then hit Enter. This command will download all the files in your GitHub repository into your vscode-projects folder.
+* Strike Accuracy – Fighters with better strike accuracy have higher win percentages.
 
-1. In VS Code, select File > Open Folder again.
+* Weight Class Impact – Heavyweights may have lower win percentages than lighter fighters due to endurance factors.
 
-1. This time, navigate to and select the folder for the project you just downloaded. Then, click Select Folder.
+* Takedown Defense – Fighters with better takedown defense tend to win more fights.
 
-1. A virtual environment is necessary when working with Python projects to ensure each project's dependencies are kept separate from each other. You need to create your virtual environment, also called a venv, and then ensure that it is activated any time you return to your workspace.
-Click the gear icon in the lower left-hand corner of the screen to open the Manage menu and select Command Palette to open the VS Code command palette.
+* Strikes Absorbed – Fighters who absorb fewer strikes per minute have a higher win rate.
 
-1. In the command palette, type: create environment and select Python: Create Environment…
+# Dataset & Data Preparation
 
-1. Choose Venv from the dropdown list.
+We used a dataset of MMA fighters that includes key statistics such as:
 
-1. Choose the Python version you installed earlier. Currently, we recommend Python 3.12.8
+* Physical Attributes: Height, reach, weight class.
 
-1. DO NOT click the box next to requirements.txt, as you need to do more steps before you can install your dependencies. Click OK.
+* Striking Stats: Significant strikes landed per minute, striking accuracy, strikes absorbed per minute.
 
-1. You will see a .venv folder appear in the file explorer pane to show that the virtual environment has been created.
+* Grappling Stats: Takedown accuracy, takedown defense, submission attempts.
 
-1. Important: Please add the .venv to your .gitignore file
+* Win/Loss Records: Total fights, wins, losses, and win percentages.
+Dataset obtained from kaggle. https://www.kaggle.com/datasets/asaniczka/ufc-fighters-statistics
 
-1. Return to the terminal by clicking on the TERMINAL tab or click on the Terminal menu and choose New Terminal if no terminal is currently open.
+# Data Cleaning & Preparation
 
-1. In the terminal, use the command below to install your dependencies. This may take several minutes.
- `pip3 install -r requirements.txt`
+Data preparation involved:
 
-1. Open the jupyter_notebooks directory, and click on the notebook you want to open.
+* Handling missing values and inconsistencies.
 
-1. Click the kernel button and choose Python Environments.
+* Standardizing numerical values for better comparisons.
 
-Note that the kernel says Python 3.12.2 as it inherits from the workspace, so it will be Python-3.12.2 as installed by our template. To confirm this, you can use `! python --version` in a notebook code cell.
+* Creating new calculated fields, such as reach-to-height ratio.
+
+* Filtering data to focus on fighters with sufficient fight history.
+
+# Data Visualization & Analysis
+
+Our analysis was conducted in Jupyter Notebooks, focusing on:
+
+* Comparing Fighter Attributes – Box plots and histograms to compare reach, height, and weight class distributions.
+
+* Performance Trends – Scatter plots and regression analysis to examine correlations.
+
+* Striking vs. Grappling Efficiency – Bar charts and heatmaps to compare successful vs. unsuccessful attempts.
+
+* Statistical Testing – Using T-tests to validate hypotheses.#
+
+# Key Findings & Conclusions
+
+* Fighters with a higher reach-to-height ratio showed a slight advantage in striking success, but the correlation was weak.
+
+* Striking accuracy had a strong positive correlation with win percentage, highlighting the importance of precision.
+
+* Heavyweights had negative results, with a clear trend suggesting a disadvantage compared to lighter fighters which could be due many factors such as endurance, mass and skill.
+
+* Takedown defense played a significant role in win rates, as fighters who could keep fights standing generally performed better.
+
+* Strikes absorbed per minute was a crucial factor—fighters who took less damage had significantly higher win rates.
+
+# Next Steps
+
+* Expand the dataset to include more fighters and historical fight data for deeper analysis.
+
+* Incorporate machine learning models to predict fight outcomes based on fighter statistics.
+
+* Opponent-Based Insights: Analyze head-to-head matchups to determine which styles work best against different fighter archetypes.
+
+* Automate Data Updates: Create a pipeline to pull updated fight statistics automatically for continuous analysis.
+
+# Tools & Technologies Used
+
+* Jupyter Notebook for data analysis and visualization.
+
+* Python (Pandas, NumPy, Matplotlib, Seaborn, SciPy) for data manipulation, visualization, and statistical analysis.
+
+* Power BI (Future Enhancement) for interactive reporting.
+
+* Streamlit for building interactive web applications.
 
 ## Cloud IDE Reminders
 
